@@ -1,0 +1,18 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  title String
+  description String?  //signo de interrogacion significa que este atributo no es esencial o requerido obligatoriamente para crear un registro en la bd
+  createdAt DateTime @default(now())
+}
