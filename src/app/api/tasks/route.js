@@ -8,7 +8,8 @@ export async function GET(){
 }
 
 export async function POST(request){
-    const {title, description} = await request.json()
+    try {
+        const {title, description} = await request.json()
         const newTask = await prisma.task.create({
             data: {
                 title,
@@ -16,4 +17,8 @@ export async function POST(request){
             }
         })
         return NextResponse.json(newTask)
+    } catch (error) {
+        return NextResponse.json(error.message)
+    }
+    
 }
