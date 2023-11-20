@@ -8,7 +8,7 @@ export default async function HomePage(){
   const tasks = await loadTasks()
   return (
     <>
-      <section className="container mx-auto"> 
+      <section className="container mx-auto lg:w-10/12 sm:w-11/12">
         <div className="grid grid-cols-3 gap-3 mt-10">
           {tasks.map((task) => (
             <div key={task.id} className="bg-slate-900 p-3 hover:bg-slate-700 hover:cursor-pointer">
