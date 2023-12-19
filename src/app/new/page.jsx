@@ -48,6 +48,16 @@ function NewPage({params}){
         router.push('/')
     }
 
+    const deleteTask = async () => {
+        const resp = await fetch(`/api/tasks/${params.id}`, {
+            method: "DELETE",
+        })
+        const data = await resp.json()
+        console.log(data)
+        router.refresh()
+        router.push('/')
+    }
+
     return(
         <>
             <div className="h-screen flex justify-center items-center">
@@ -56,7 +66,14 @@ function NewPage({params}){
                     <input type="text" id="title" placeholder="Titulo" className="border border-gray-400 p-2 mt-1 mb-4 w-full text-black" onChange={(event) => setTaskList({...taskList, title: event.target.value})} value={taskList.title || ''}/>
                     <label htmlFor="description" className="font-bold text-sm">Descripcion detallada de la tarea</label>
                     <textarea rows="3" id="description" placeholder="Describe tu tarea" className="border border-gray-400 p-2 mb-4 mt-1 w-full text-black" onChange={(event) => setTaskList({...taskList, description: event.target.value})} value={taskList.description || ''}></textarea>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(event) => addNewTask(event, taskList)}>Crear</button>
+                    <div className="flex justify-between">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(event) => addNewTask(event, taskList)}>Crear</button>
+                        {
+                            params.id && (
+                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="button" onClick={deleteTask}>Delete</button>
+                            )
+                        }
+                    </div>
                 </form>
             </div>
         </>
