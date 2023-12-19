@@ -1,22 +1,50 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useEffect } from "react";
 
-function NewPage(){
+function NewPage({params}){
     const [taskList, setTaskList] = useState({})
     const router = useRouter()
+    // const [storeTask, setStoreTask] = useState({})   estado para recibir y guardar la tarea por si se decide mostrar el contenido de la tarea en el placeholder en lugar del valor del input en un futuro
+
+    useEffect(() => {
+        if(params.id){
+
+            fetch(`/api/tasks/${params.id}`)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    console.log(data)
+                    setTaskList(data)
+                })
+        }
+    }, []);
 
     const addNewTask = async (event, newTask) =>{
         event.preventDefault()
-        const resp = await fetch('api/tasks', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newTask)
-        })
-        const data = await resp.json()
-        console.log(data)
+        if(params.id){
+            const resp = await fetch(`/api/tasks/${params.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newTask)
+            })
+            const data = await resp.json()
+            console.log(data)
+        }
+        else{
+            const resp = await fetch('/api/tasks', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newTask)
+            })
+            const data = await resp.json()
+            console.log(data)
+        }
+        
         router.push('/')
     }
 
