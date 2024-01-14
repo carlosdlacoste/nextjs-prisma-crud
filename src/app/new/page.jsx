@@ -44,7 +44,7 @@ function NewPage({params}){
             const data = await resp.json()
             console.log(data)
         }
-        
+        router.refresh()
         router.push('/')
     }
 
