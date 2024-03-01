@@ -3,6 +3,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useEffect } from "react";
 
+/**
+ * Componente NewPage que renderiza el formulario para agregar una nueva tarea o el formulario para actualizar una determinada tarea segun sea el caso
+ * @param {Object} [params] Objeto con la informacion detallada de la tarea selecionada (id, title, description)
+ * @returns {void}
+ */
+
+
 function NewPage({params}){
     const [taskList, setTaskList] = useState({})
     const router = useRouter()
@@ -19,6 +26,13 @@ function NewPage({params}){
                 })
         }
     }, []);
+
+    /**
+     * Esta funcion valida inicialmente si el usuario esta tratando de crear una nueva tarea o en su defecto actualizarla, para luego registrar la informacion de la tarea en la base de datos.
+     * @param {Event} event Evento que se produce inmediatamente despues de hacer click en el boton Crear.
+     * @param {useState} newTask Hook de tipo useState. En este estado estamos guardando toda la informacion correspondiente asignada por el usuario a la nueva tarea o la tarea existente segun sea el caso.
+     * @returns {void}
+     */
 
     const addNewTask = async (event, newTask) =>{
         event.preventDefault()
@@ -47,6 +61,11 @@ function NewPage({params}){
         router.refresh()
         router.push('/')
     }
+
+    /**
+     * Esta funcion elimina una tarea seleccionada por el usuario de la base de datos.
+     * @return {void}
+     */
 
     const deleteTask = async () => {
         const resp = await fetch(`/api/tasks/${params.id}`, {
