@@ -1,5 +1,6 @@
 /**
  * Componente AboutPage que muestra el contenido que se renderiza en la pagina about
+ * @component AboutPage
  * @returns {void}                  
  */
 

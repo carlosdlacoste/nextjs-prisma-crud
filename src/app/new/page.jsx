@@ -5,12 +5,20 @@ import { useEffect } from "react";
 
 /**
  * Componente NewPage que renderiza el formulario para agregar una nueva tarea o el formulario para actualizar una determinada tarea segun sea el caso
+ * @component NewPage
  * @param {Object} [params] Objeto con la informacion detallada de la tarea selecionada (id, title, description)
  * @returns {void}
  */
 
 
 function NewPage({params}){
+
+    /**
+     * @typedef {Object} taskList
+     * @property {Number} id | El id de la tarea, el cual es generado automaticamente por la bd
+     * @property {String} title | El titulo o nombre que el usuario le ha asignado a la tarea
+     * @property {String} description | La descripccion de la tarea que el usuario le ha asignado 
+     */
     const [taskList, setTaskList] = useState({})
     const router = useRouter()
     // const [storeTask, setStoreTask] = useState({})   estado para recibir y guardar la tarea por si se decide mostrar el contenido de la tarea en el placeholder en lugar del valor del input en un futuro
