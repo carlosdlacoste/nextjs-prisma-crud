@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+/**
+ * Componente que se renderiza cuando la ruta especificada no existe dentro de la app
+ * @component NotFound
+ * @return {void}
+ */
+
 function NotFound(){
     return(
         <>

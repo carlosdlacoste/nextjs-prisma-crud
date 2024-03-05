@@ -24,6 +24,7 @@ function NewPage({params}){
     // const [storeTask, setStoreTask] = useState({})   estado para recibir y guardar la tarea por si se decide mostrar el contenido de la tarea en el placeholder en lugar del valor del input en un futuro
 
     useEffect(() => {
+        //se comprueba al cargar la pagina si se obtiene el objeto de la tarea seleccionada para actualizar y asi poder guardar la informacion correspondiente en el state taskList
         if(params.id){
 
             fetch(`/api/tasks/${params.id}`)
