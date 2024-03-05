@@ -7,7 +7,7 @@ import { useEffect } from "react";
  * Componente NewPage que renderiza el formulario para agregar una nueva tarea o el formulario para actualizar una determinada tarea segun sea el caso
  * @component NewPage
  * @param {Object} [params] Objeto con la informacion detallada de la tarea selecionada (id, title, description)
- * @returns {void}
+ * @returns {Component}
  */
 
 
