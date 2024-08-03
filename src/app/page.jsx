@@ -1,6 +1,5 @@
 import { prisma } from "@/libs/prisma";
 import TaskCard from "@/components/taskCard";
-import { Component } from "react";
 
 
 /**
